@@ -1,22 +1,14 @@
-const adUrlPatterns = [
-    "*://*.doubleclick.net/*",
-    "*://partner.googleadservices.com/*",
-    "*://*.googlesyndication.com/*",
-    "*://*.google-analytics.com/*",
-    "*://creative.ak.fbcdn.net/*",
-    "*://*.adbrite.com/*",
-    "*://*.exponential.com/*",
-    "*://*.quantserve.com/*",
-    "*://*.scorecardresearch.com/*",
-    "*://*.zedo.com/*",
-    "*://*.youtube.com/*ad*",
-    "*://*.mxplayer.in/*ad*"
-  ];
-  
-  chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-      return { cancel: true };
-    },
-    { urls: adUrlPatterns },
-    ["blocking"]
-  );
+chrome.declarativeNetRequest.updateDynamicRules({
+  addRules: [
+    {
+      "id": 1,
+      "priority": 1,
+      "action": { "type": "block" },
+      "condition": {
+        "urlFilter": "*://*.doubleclick.net/*",
+        "resourceTypes": ["script", "xmlhttprequest", "sub_frame", "image"]
+      }
+    }
+  ],
+  removeRuleIds: [1]
+});
