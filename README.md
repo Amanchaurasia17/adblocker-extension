@@ -26,7 +26,7 @@ An advanced **AdBlocker Chrome Extension** that removes ads from all websites, i
 
 ## 📂 Folder Structure  
 
-```plaintext
+
 AdBlocker/
 │── icons/
 │   ├── icon16.png
@@ -41,7 +41,7 @@ AdBlocker/
 │── styles.css
 
 
-🔧 Installation Guide
+🔧 **Installation Guide**
 Method 1: Load as an Unpacked Extension
 1. Download the Repository (git clone or manually).
 2. Open Google Chrome and go to chrome://extensions/.
@@ -51,23 +51,23 @@ Method 1: Load as an Unpacked Extension
 
 
 
-⚙️ How It Works
-1️⃣ Background Script (background.js)
+⚙️** How It Works**
+1️⃣ _Background Script (background.js)_
 1. Uses declarativeNetRequest to block ad scripts from known ad networks.
 2. Excludes YouTube from strict ad-blocking to avoid black screen issues.
-2️⃣ Content Script (content.js)
+2️⃣ _Content Script (content.js)_
 1. Detects & removes ad elements (Google Ads, Facebook Ads, etc.).
 2. Auto-clicks "Skip Ad" on YouTube videos to reduce ad interruptions.
 2. Uses MutationObserver for real-time ad removal.
-3️⃣ Popup UI (popup.html & popup.js)
+3️⃣ _Popup UI (popup.html & popup.js)_
 1. Simple toggle switch to enable/disable ad blocking.
 
-🚀 Future Enhancements
+🚀** Future Enhancements**
 ✅ Add more custom blocking rules.
 ✅ Improve UI for better control over ad blocking.
 ✅ Optimize for better YouTube experience.
 
 
 
-📜 License
+📜** License**
 This project is licensed under the MIT License.
