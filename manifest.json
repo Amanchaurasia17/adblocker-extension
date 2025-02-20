@@ -1,36 +1,45 @@
 {
-    "manifest_version": 3,
-    "name": "AdBlocker Extension",
-    "version": "1.3",
-    "description": "A Chrome adblocker extension that blocks ads on all websites, including YouTube and MX Player",
-    "permissions": [
-      "webRequest",
-      "webRequestBlocking",
-      "storage",
-      "activeTab",
-      "tabs"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "run_at": "document_start"
-      }
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-      }
-    },
-    "icons": {
+  "manifest_version": 3,
+  "name": "AdBlocker Extension",
+  "version": "1.3",
+  "description": "A Chrome adblocker extension that blocks ads on all websites, including YouTube and MX Player",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
   }
+}
