@@ -1,30 +1,33 @@
-const adSelectors = [
-    'iframe[src*="ad"]',
-    'img[src*="ad"]',
-    'div[class*="ad"]',
-    'div[id*="ad"]',
-    'a[href*="ad"]',
-    'ytd-compact-promoted-video-renderer',
-    'ytd-promoted-sparkles-web-renderer',
-    'ytd-promoted-video-renderer',
-    'ytd-display-ad-renderer',
-    'ytd-video-masthead-ad-advertiser-info-renderer',
-    '.mx-player-ad', 
-    'div[class*="mx-player-ad"]',
-    'div[id*="mx-player-ad"]'
-  ];
-  
-  function removeAds() {
-    adSelectors.forEach(selector => {
-      const ads = document.querySelectorAll(selector);
-      ads.forEach(ad => ad.remove());
-    });
+function waitForBody(callback) {
+  if (document.body) {
+    callback();
+  } else {
+    new MutationObserver((mutations, observer) => {
+      if (document.body) {
+        observer.disconnect();
+        callback();
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
   }
-  
+}
 
-  setTimeout(() => {
-    const observer = new MutationObserver(removeAds);
-    observer.observe(document, { childList: true, subtree: true });
-  
+waitForBody(() => {
+  function removeAds() {
+    document.querySelectorAll("#player-ads, .ad-container, .ad-display, .ad-showing, .ytp-ad-module").forEach(ad => {
+      ad.remove();
+    });
+
+    const skipButton = document.querySelector(".ytp-ad-skip-button, .ytp-ad-skip-button-modern");
+    if (skipButton) {
+      skipButton.click();
+    }
+  }
+
+  const observer = new MutationObserver(() => {
     removeAds();
-  }, Math.random() * 1000 + 500);
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  removeAds();
+});
