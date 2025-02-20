@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AdBlocker Extension",
   "version": "1.3",
-  "description": "A Chrome adblocker extension that blocks ads on all websites, including YouTube and MX Player",
+  "description": "A Chrome adblocker extension that blocks ads on all websites.",
   "permissions": [
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
@@ -11,7 +11,8 @@
     "tabs"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
